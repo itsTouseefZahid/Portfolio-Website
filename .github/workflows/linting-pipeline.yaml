@@ -1,0 +1,24 @@
+name: lint-wf
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+jobs:
+  linting-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: cloning the repository
+        uses: actions/checkout@v4
+      - name: installing HTMLHINT
+        run: npm install --save--dev htmlhint  
+      - name: Lint HTML files
+        run:  npx htmlhint "**/*.html"
+      - name: Installing StyleLint
+        run:  npm install --save--dev Stylelint 
+      - name: Lint CSS files
+        run: npx Stylelint "**/*.css "   
+
+              
